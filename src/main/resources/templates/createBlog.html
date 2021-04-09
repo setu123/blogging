@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+    <nav th:replace="template.html :: navigation"/>
+
+    <article>
+        <h1>Create new blog</h1>
+        <div class="container">
+            <form class="form form-signin" th:method="post" action="#" th:action="@{/blog}" th:object="${blog}">
+                <p>
+                    <label for="title" class="sr-only">Title</label>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="Username" required autofocus>
+                </p>
+                <p>
+                    <label for="content" class="sr-only">Content</label>
+                    <textarea id="content" name="content" class="form-control" placeholder="Content" required></textarea>
+                </p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+            </form>
+        </div>
+    </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>

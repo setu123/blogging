@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+    <nav th:replace="template.html :: navigation"/>
+
+    <article>
+        <h1>Blogs</h1>
+        <table>
+            <thead>
+            <tr>
+                <td>Title</td><td>Author</td><td>Status</td><td></td><td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blog: ${blogs}">
+                <td>
+                    <a th:if="${blog.status.toString().equals('PUBLISHED')}" th:href="@{/blog/{id}(id=${blog.id})}">
+                        <span th:text="${blog.title}"/>
+                    </a>
+                    <span th:if="${!blog.status.toString().equals('PUBLISHED')}" th:text="${blog.title}"/>
+                </td>
+                <td th:text="${blog.author.username}"></td>
+                <td th:text="${blog.status}"></td>
+
+                <td>
+                    <form th:if="${blog.status.toString().equals('DRAFT')}" th:action="@{/blog/{id}(id=${blog.id})}" th:method="put">
+                        <button class="btn btn-primary" type="submit">Publish</button>
+                    </form>
+                </td>
+
+                <td>
+                    <form th:action="@{/blog/{id}(id=${blog.id})}" th:method="delete">
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                    <!--<a th:href="@{/blog/{id}(id=${blog.id})}">Delete</a>-->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/blog/create">Create new blog</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>

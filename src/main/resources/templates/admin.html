@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+    <nav th:replace="template.html :: navigation"/>
+
+    <article>
+        <h1>User</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="admin: ${admins}">
+                    <td th:text="${admin.username}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/admin/create">Create admin account</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>

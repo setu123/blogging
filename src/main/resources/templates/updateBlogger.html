@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+    <nav th:replace="template.html :: navigation"/>
+
+    <article>
+        <h1>Create admin account</h1>
+        <div class="container">
+            <form class="form form-signin" action="#" th:action="@{/blogger/{id}(id=${id})}" th:object="${blogger}" th:method="put">
+                <p>
+                    <label>Username</label>
+                    <span th:text="${blogger.username}">username</span>
+                </p>
+                <p>
+                    <label>Password</label>
+                    <select id="status" name="status">
+                        <option th:if="${blogger.status.toString().equals('PENDING')}" th:value="APPROVED" th:text="APPROVED"></option>
+                        <option th:if="${blogger.status.toString().equals('APPROVED')}" th:value="DEACTIVATED" th:text="DEACTIVATED"></option>
+                    </select>
+                </p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+            </form>
+        </div>
+    </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>

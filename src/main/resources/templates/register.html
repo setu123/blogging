@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+  <nav th:replace="template.html :: navigation"/>
+
+  <article>
+    <h1>Register for blogger</h1>
+    <div class="container">
+      <form class="form form-signin" th:method="post" th:action="@{/blogger/register}" th:object="${blogger}" onsubmit="return passwordMatches(this)">
+        <p>
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" th:field="*{username}" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+          <span class="error" th:if="${userExists}">User already exists</span>
+        </p>
+        <p>
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <p>
+          <label for="confirmPassword" class="sr-only">Confirm password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm password" required>
+        </p>
+        <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      </form>
+    </div>
+  </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>

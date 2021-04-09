@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.html :: head"/>
+<body>
+<header th:replace="template.html :: header"/>
+<section>
+    <nav th:replace="template.html :: navigation"/>
+
+    <article>
+        <h1 th:text="${blog.title}">Blogs</h1>
+        <div class="">
+            <p th:text="${blog.content}"></p>
+            <span th:text="${blog.author.username}"></span>
+            <hr/>
+        </div>
+        <div class="commentsContainer">
+            <h3>Comments</h3>
+            <div class="comments">
+
+            </div>
+        </div>
+    </article>
+
+</section>
+<footer th:replace="template.html :: footer"/>
+</body>
+</html>
